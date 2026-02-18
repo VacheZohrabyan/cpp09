@@ -26,7 +26,7 @@ void BitcoinExchange::loadDatabase(const std::string& filename)
         while (std::getline(open_db, text))
         {
             if (text.empty())
-                return ;
+                return open_db.close();
             if (text == "date,exchange_rate")
                 continue;
             insert_storage(text);
@@ -59,14 +59,18 @@ void BitcoinExchange::parseInpute(const std::string& filename) const
     if (!open_input.is_open())
         throw File_is_not_open();
     std::string text;
+    std::getline(open_input, text);
+    if (text != "date | value")
+        return (void)(std::cout << "Bad format, " << text << std::endl), open_input.close();
     while (std::getline(open_input, text))
     {
         if (text == "date | value")
             continue;
         if (text.empty())
-            return ;
+            return open_input.close();
         parse_value(text);
     }
+    open_input.close();
 }
 
 void BitcoinExchange::parse_value(const std::string& text) const

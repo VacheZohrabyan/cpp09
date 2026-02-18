@@ -2,7 +2,7 @@ NAME = RPN
 
 GCC = c++
 
-GCCFLAGS = -g3 -Wall -Wextra -Werror -std=c++98
+GCCFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SOURCE = main.cpp RPN.cpp
 
