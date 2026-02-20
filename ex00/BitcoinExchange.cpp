@@ -92,7 +92,7 @@ void BitcoinExchange::find_date_and_print(const std::string& text, std::size_t p
         --it;
     }
     double result = std::atof(text.substr(pos + 1).c_str());
-    if (result >= 2147483648)
+    if (result >= 1000)
         return ErrorMessage("too large a number.");
     if (result <= 0)
         return ErrorMessage("not a positive number.");
